@@ -1,19 +1,21 @@
-<div (click)="toggelAns($event)" class="comment-preview">
-    <div class="comment-info">
-        <img class="comment-img" [src]="'assets/users/'+comment.by.id+'.jpg'" alt="">
-        <div class="name-date">
-            <p>{{comment.by.displayName}}</p>
-            <p>{{comment.createdAt|timeAgo}}</p>
+
+    <div (click)="toggelAns($event)" class="comment-preview">
+        <div class="comment-info">
+            <img class="comment-img" [src]="'assets/users/'+comment.by.id+'.jpg'" alt="">
+            <div class="name-date">
+                <p>{{comment.by.displayName}}</p>
+                <p>{{comment.createdAt|timeAgo}}</p>
+            </div>
+        </div>
+        {{comment.txt}}
+        
+        <div *ngIf="checkUser()" class="comment-actions">
+            <button (click)="onEditComment($event)">EDIT COMMENT</button>
+            <button (click)="onDeleteComment($event)">DELETE COMMENT</button>
         </div>
     </div>
-    {{comment.txt}}
 
-    <div *ngIf="checkUser()" class="comment-actions">
-        <button (click)="onEditComment($event)">EDIT COMMENT</button>
-        <button (click)="onDeleteComment($event)">DELETE COMMENT</button>
-    </div>
-</div>
-<form class="new-comment" *ngIf="isAns" (submit)="onAddComment($event)">
-    <input placeholder="Add commemt..." name="newCommemtTxt" [(ngModel)]="newCommemtTxt" type="text">
-    <button>ADD</button>
-</form>
+    <form class="new-comment" *ngIf="isAns" (submit)="onAddComment($event)">
+        <input placeholder="Add commemt..." name="newCommemtTxt" [(ngModel)]="newCommemtTxt" type="text">
+        <button>ADD</button>
+    </form>

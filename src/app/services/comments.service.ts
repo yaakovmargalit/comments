@@ -11,17 +11,14 @@ import { UsersService } from './users.service';
 })
 export class CommentsService {
 
-  private commentsDB: any[] = commentsJson.default
+  private commentsDB: Icomment[] = commentsJson.default
 
 
   private _comments$ = new BehaviorSubject<Icomment[]>([])
   public comments$ = this._comments$.asObservable()
   constructor(private usersService: UsersService) { }
 
-  public loadComments(): void {
-    console.log(this.usersService.getUsers());
-    console.log(this.commentsDB.length);
-
+  public loadComments(): void { //Loads the responses and prepares them for presentation
     const locals: Icomment[] = JSON.parse(localStorage.getItem('comments'))
     if (!locals || !locals.length) {
       localStorage.setItem('comments', JSON.stringify(this.commentsDB))
@@ -30,7 +27,7 @@ export class CommentsService {
     this._comments$.next(this.buildComments())
   }
 
-  public buildComments() {
+  public buildComments() {//Constructs the responses 
     const comments = []
     this.commentsDB.forEach(comment => {
       if (!comment.parentCommentId) {
@@ -41,11 +38,10 @@ export class CommentsService {
         })
       }
     })
-
     return comments.sort((a, b) => new Date( b.createdAt).getTime() - new Date( a.createdAt).getTime() )
   }
 
-  public buildNested(comment) {
+  public buildNested(comment) {//Constructs the responses nested by recursion
     const nes = []
     this.commentsDB.forEach(comm => {
       if (comm.parentCommentId == comment.id) {
@@ -62,9 +58,7 @@ export class CommentsService {
 
   public addComment(newComment) {
     newComment.id =this._makeId()
-    this.commentsDB.push(newComment)
-    console.log(this.commentsDB);
-    
+    this.commentsDB.push(newComment)    
     localStorage.setItem('comments', JSON.stringify(this.commentsDB))
     this._comments$.next(this.buildComments())
   }
@@ -78,7 +72,7 @@ export class CommentsService {
 
   }
 
-  public deleteComment(commentId) {
+  public deleteComment(commentId) {//Delete the selected response and all its children by recursion
     this.commentsDB = this.commentsDB.filter(comm => comm.id !== commentId)
     this.commentsDB.forEach(comm => {
       if (comm.parentCommentId === commentId) {
@@ -86,7 +80,6 @@ export class CommentsService {
       }
     })
     localStorage.setItem('comments', JSON.stringify(this.commentsDB))
-
     this._comments$.next(this.buildComments())
   }
 

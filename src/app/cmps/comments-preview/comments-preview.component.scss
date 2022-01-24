@@ -1,3 +1,4 @@
+
 .comment-preview{
     border: 1px solid black;
     padding-inline: 15px;
@@ -20,6 +21,7 @@
     .comment-actions{
         margin-inline: 20px;
         display: flex;
+        margin-left: auto;
         button{
             margin: 10px;
             padding: 8px;

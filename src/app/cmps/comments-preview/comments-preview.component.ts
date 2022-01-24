@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Icomment } from 'src/app/modles/comment.interface';
+import {  ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CommentsService } from 'src/app/services/comments.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -22,15 +21,10 @@ export class CommentsPreviewComponent implements OnInit {
   toggelAns(ev) {
     ev.stopPropagation()
     this.isAns = !this.isAns
-    // document.addEventListener('click',()=>{
-    //   console.log('fff');
-
-    // })
-
   }
   onAddComment(ev) {
     ev.preventDefault()
-    console.log(this.newCommemtTxt);
+    if(!this.newCommemtTxt)return
     this.commentService.addComment({
       by: this.userService.getCurrUser(),
       txt: this.newCommemtTxt,
@@ -50,6 +44,7 @@ export class CommentsPreviewComponent implements OnInit {
   onEditComment(ev) {
     ev.stopPropagation()
     this.comment.txt = prompt('New value')
+    if(!this.comment.txt)return
     this.commentService.editComment(this.comment)
   }
 }

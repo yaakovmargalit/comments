@@ -2,12 +2,9 @@
     <ul>
      <li>
          <comments-preview [comment]="comment"></comments-preview>
-       
+         <!-- Render the responses belonging to the current response, by recursion -->
          <comments [comments]="comment.comments" *ngIf="comment.comments"></comments>
         </li>
     </ul>
   </div>
-<!-- <pre>
 
-    {{comments|json}}
-</pre> -->

@@ -10,6 +10,8 @@ export class TimeAgoPipe implements PipeTransform {
             const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
             if (seconds < 29) // less than 30 seconds ago will show as 'Just now'
                 return 'Just now';
+                if(seconds>86400)
+                return new Date(value).toLocaleDateString('en-US')
             const intervals = {
                 'year': 31536000,
                 'month': 2592000,
