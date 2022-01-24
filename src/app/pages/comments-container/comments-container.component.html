@@ -1,0 +1,11 @@
+<div class="comments-container">
+    <div class="user">
+
+        <user-input (selectedUser)="setCurrUser($event)" [users]="users"></user-input>
+        <div class="curr-user">
+            <h3>Logged in user: <span class="user-name"> {{currUser.displayName}}</span></h3>
+            <img [src]="'assets/users/'+currUser.id+'.jpg'" alt="">
+        </div>
+    </div>
+    <comments [comments]="comments$|async"></comments>
+</div>

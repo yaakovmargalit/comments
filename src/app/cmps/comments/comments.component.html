@@ -1,0 +1,13 @@
+<div *ngFor="let comment of comments">
+    <ul>
+     <li>
+         <comments-preview [comment]="comment"></comments-preview>
+       
+         <comments [comments]="comment.comments" *ngIf="comment.comments"></comments>
+        </li>
+    </ul>
+  </div>
+<!-- <pre>
+
+    {{comments|json}}
+</pre> -->

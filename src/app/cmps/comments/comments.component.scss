@@ -1,0 +1,21 @@
+.comment-preview{
+    border: 1px solid black;
+    padding: 15px;
+    display: flex;
+    .comment-img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+}
+
+ul{
+    // margin: 10px;
+}
+li{
+    list-style: none;
+}
+
+li:last-child{
+    margin-bottom: 20px;
+}
