@@ -1,0 +1,5 @@
+<form class="new-comment" (submit)="onAddComment($event)">
+    <img [src]="'assets/users/'+currUser.id+'.jpg'" alt="">
+    <input placeholder="Add commemt..." [(ngModel)]="newComment" name="newComment" type="text">
+    <button>SUBMIT</button>
+</form>

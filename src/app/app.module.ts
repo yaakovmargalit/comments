@@ -9,6 +9,7 @@ import { CommentsComponent } from './cmps/comments/comments.component';
 import { TimeAgoPipe } from './services/time-ago.pipe';
 import { UserInputComponent } from './cmps/user-input/user-input.component';
 import { FormsModule } from '@angular/forms';
+import { NewCommentComponent } from './cmps/new-comment/new-comment.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     CommentsPreviewComponent,
     CommentsComponent,
     TimeAgoPipe,
-    UserInputComponent
+    UserInputComponent,
+    NewCommentComponent
   ],
   imports: [
     BrowserModule,
